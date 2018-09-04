@@ -3,7 +3,7 @@ import React from 'react'
 import renderer from 'react-test-renderer'
 import { connectStyle } from '../'
 
-const ObjForTest = connectStyle('.ObjForTest', { fontSize: 12 })(class extends React.Component {
+const CompTest = connectStyle('.CompTest', { fontSize: 12 })(class extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -12,16 +12,16 @@ const ObjForTest = connectStyle('.ObjForTest', { fontSize: 12 })(class extends R
   }
 })
 
-const ObjRootWrapper = connectStyle('.ObjRootWrapper', { '.ObjForTest': { fontSize: 13 } })(class extends React.Component {
+const RootWrapper = connectStyle('.RootWrapper', { '.CompTest': { fontSize: 13 } })(class extends React.Component {
   constructor(props) {
     super(props)
   }
   render() {
-    return <ObjForTest />
+    return <CompTest />
   }
 })
 
-const ObjRootChild = connectStyle('.ObjRootChild', { '.ObjForTest': { fontSize: 13 } })(class extends React.Component {
+const RootChild = connectStyle('.RootChild', { '.CompTest': { fontSize: 13 } })(class extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -35,17 +35,17 @@ describe('React nested css', function () {
   })
 
   it('standalone css verify', () => {
-    const tree = renderer.create(<ObjForTest />)
+    const tree = renderer.create(<CompTest />)
     expect(tree.toTree().rendered.props.styles.fontSize).toBe(12)
   })
 
   it('nested css verify with children', () => {
-    const tree = renderer.create(<ObjRootChild><ObjForTest /></ObjRootChild>)
+    const tree = renderer.create(<RootChild><CompTest /></RootChild>)
     expect(tree.toTree().rendered.rendered.rendered.props.styles.fontSize).toBe(13)
   })
 
   it('nested css verify with wrapper', () => {
-    const tree = renderer.create(<ObjRootWrapper />)
+    const tree = renderer.create(<RootWrapper />)
     expect(tree.toTree().rendered.rendered.rendered.props.styles.fontSize).toBe(13)
   })
 })
