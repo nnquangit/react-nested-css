@@ -1,6 +1,9 @@
 # react-nested-css
 Nested css for react native
 
+[![Build Status](https://travis-ci.org/nnquangit/react-nested-css.svg?branch=master)](https://travis-ci.org/nnquangit/react-nested-css)
+[![CircleCI](https://circleci.com/gh/nnquangit/react-nested-css/tree/master.svg?style=svg)](https://circleci.com/gh/nnquangit/react-nested-css/tree/master)
+
 # Installation
 ```
 npm install react-nested-css --save
